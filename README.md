@@ -5,10 +5,13 @@ You must install [ffmpeg](https://ffmpeg.org/download.html) to use this project
 Install watchdog and python-magic with pip: `pip install watchdog python-magic`
 
 **Install lib-magic**
+
 *Windows*
 `pip install python-magic-bin`
+
 *Linux*
 `sudo apt-get install libmagic1`
+
 *OSX*
 - When using Homebrew: `brew install libmagic`
 - When using macports: `port install file`
