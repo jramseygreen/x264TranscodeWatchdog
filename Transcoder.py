@@ -1,10 +1,12 @@
 import os
 import time
+import magic
 
 from Watcher import Watcher
 
 class Transcoder:
     def __init__(self, ffmpeg_path="ffmpeg", input_dir=None, processing_dir=None, output_dir=None):
+        self.mime = magic.Magic(mime=True)
         self.ffmpeg_path = ffmpeg_path
 
         if not input_dir:
@@ -39,7 +41,7 @@ class Transcoder:
                 historicalSize = os.path.getsize(event.src_path)
                 time.sleep(1)
             time.sleep(1)
-            if not os.path.exists(self.output_dir + os.sep + event.src_path.replace(self.input_dir + os.sep, "") + ".mp4"):
+            if not os.path.exists(self.output_dir + os.sep + event.src_path.replace(self.input_dir + os.sep, "") + ".mp4") and self.mime.from_file(event.src_path).find("video") != -1:
                 os.makedirs(os.path.dirname(self.processing_dir + os.sep + event.src_path.replace(self.input_dir + os.sep, "") + '.mp4'), exist_ok=True)
                 os.system(self.ffmpeg_path + ' -i "' + event.src_path + '" -bsf:v h264_mp4toannexb -sn -map 0:0 -map 0:1 -vcodec libx264 "' + self.processing_dir + os.sep + event.src_path.replace(self.input_dir + os.sep, "") + '.mp4"')
                 os.makedirs(os.path.dirname(self.output_dir + os.sep + event.src_path.replace(self.input_dir + os.sep, "") + '.mp4'), exist_ok=True)
