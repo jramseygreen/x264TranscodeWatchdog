@@ -1,2 +1,5 @@
 # x264TranscodeWatchdog
-monitor a directory and transcode any files dropped inside to x264 codec
+## Dependencies
+You must install [ffmpeg](https://link.link) to use this project
+
+install watchdog with pip: `pip install watchdog`
