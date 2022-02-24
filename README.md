@@ -2,7 +2,16 @@
 ## Dependencies
 You must install [ffmpeg](https://ffmpeg.org/download.html) to use this project
 
-install watchdog with pip: `pip install watchdog`
+Install watchdog and python-magic with pip: `pip install watchdog python-magic`
+
+**Install lib-magic**
+*Windows*
+`pip install python-magic-bin`
+*Linux*
+`sudo apt-get install libmagic1`
+*OSX*
+- When using Homebrew: `brew install libmagic`
+- When using macports: `port install file`
 
 ## Setup
 In `main.py` add the path to the ffpmeg binary overwriting the `ffmpeg_path` variable (if ffmpeg is not already an evironment variable).
